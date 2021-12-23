@@ -1,15 +1,17 @@
 import { actionTypes, mutationTypes } from "../const";
 import api from "../../api";
 
+const defval = [{
+  id: 1,
+  title: "鎌倉観光",
+  detail: "鶴岡八幡宮\n→蕎麦屋\n→ジェラート屋\n→お土産屋"
+}];
+
 const todo = {
   namespaced: true,
 
   state: () => ({
-    list: [{
-      id: 1,
-      title: "鎌倉観光",
-      detail: "鶴岡八幡宮\n→蕎麦屋\n→ジェラート屋\n→お土産屋"
-    }]
+    list: []
   }),
 
   getters: {
@@ -21,6 +23,17 @@ const todo = {
   },
 
   actions: {
+    [actionTypes.TODO_LIST](context){
+      return api.get('todo').then((list)=>{
+        let ret;
+        if (list != null){
+          ret = list;
+        } else {
+          ret = defval;
+        }
+        context.commit(mutationTypes.TODO_LIST, { list: ret });
+      });
+    },
     [actionTypes.TODO_CREATE](context, payload){
       // 該当のtodoを更新する
       return api.post('todo/create', {todo: payload.todo}).then(()=>{
@@ -45,6 +58,9 @@ const todo = {
   },
 
   mutations: {
+    [mutationTypes.TODO_LIST](state, payload){
+      state.list = payload.list;
+    },
     [mutationTypes.TODO_CREATE](state, payload){
       const { todo, newId } = payload;
       const { list } = state;

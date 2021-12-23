@@ -72,7 +72,7 @@ import { actionTypes, modules } from "../store/const";
 
 export default {
   computed: {
-    ...mapState(modules.TODO, { todos: 'list' })
+    ...mapState(modules.TODO, { todos: 'list' }),
   },
 
   methods: {
@@ -90,6 +90,11 @@ export default {
         }, 2000);
       })
     }
+  },
+
+  created(){
+    // TODO 削除したとき、更新画面から戻ってきたときに読み込んでしまう
+    this.$store.dispatch(modules.TODO + "/" + actionTypes.TODO_LIST);
   },
 
   data(){
