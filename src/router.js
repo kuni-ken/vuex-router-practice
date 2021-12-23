@@ -5,7 +5,8 @@ import ToDoDetail from './components/ToDoDetail'
 
 const routes = [
   { path: '/', component: ToDoList },
-  { path: '/detail', component: ToDoDetail },
+  { path: '/detail/create', component: ToDoDetail },
+  { path: '/detail/:id', component: ToDoDetail },
 ]
 
 Vue.use(VueRouter)
