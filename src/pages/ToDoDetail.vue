@@ -1,65 +1,16 @@
 <template>
-  <v-card
-    flat
-  >
-    <v-toolbar
-      color="cyan"
-      dark
+  <v-container>
+    <v-card
+      flat
     >
-      <v-toolbar-title>ToDo</v-toolbar-title>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        outlined
-        to="/"
-        :disabled="isUpdating"
+      <v-toolbar
+        flat
       >
-        <v-icon >
-          mdi-close
-        </v-icon>
-        戻る
-      </v-btn>
-    </v-toolbar>
-    <v-card-text>
-      <v-container>
-        <v-row>
-          <v-col
-            cols="12"
-            sm="12"
-            md="12"
-          >
-            <v-text-field
-              label="タイトル*"
-              required
-              v-model="todo.title"
-            ></v-text-field>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col
-            cols="12"
-            sm="12"
-            md="12"
-          >
-            <v-textarea
-              required
-              label="詳細*"
-              v-model="todo.detail"
-            ></v-textarea>
-          </v-col>
-        </v-row>
-      </v-container>
-      <small>*：入力必須</small>
-    </v-card-text>
-    <v-card-actions>
-      <v-row justify="center">
+        <v-spacer></v-spacer>
+
         <v-btn
-          class="ma-2"
           outlined
-          color="primary"
-          to="/"
-          min-width="88px"
+          to="/list"
           :disabled="isUpdating"
         >
           <v-icon >
@@ -67,21 +18,56 @@
           </v-icon>
           戻る
         </v-btn>
-        <v-btn
-          class="ma-2"
-          color="primary"
-          @click="fix"
-          min-width="88px"
-          :loading="isUpdating"
-        >
-          <v-icon >
-            mdi-arrow-up-thin-circle-outline
-          </v-icon>
-          更新
-        </v-btn>
-      </v-row>
-    </v-card-actions>
-  </v-card>
+      </v-toolbar>
+      <v-card-text>
+        <v-container>
+          <v-row>
+            <v-col
+              cols="12"
+              sm="12"
+              md="12"
+            >
+              <v-text-field
+                label="タイトル*"
+                required
+                v-model="todo.title"
+              ></v-text-field>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col
+              cols="12"
+              sm="12"
+              md="12"
+            >
+              <v-textarea
+                required
+                label="詳細*"
+                v-model="todo.detail"
+              ></v-textarea>
+            </v-col>
+          </v-row>
+        </v-container>
+        <small>*：入力必須</small>
+      </v-card-text>
+      <v-card-actions>
+        <v-row justify="center">
+          <v-btn
+            class="ma-2"
+            color="primary"
+            @click="fix"
+            min-width="88px"
+            :loading="isUpdating"
+          >
+            <v-icon >
+              mdi-arrow-up-thin-circle-outline
+            </v-icon>
+            更新
+          </v-btn>
+        </v-row>
+      </v-card-actions>
+    </v-card>
+  </v-container>
 </template>
 
 <script>
@@ -116,7 +102,7 @@ export default {
           { todo: this.todo }
         ).then(() => {
           this.isUpdating = false;
-          this.$router.push(`/`);
+          this.$router.push(`/list`);
         })
       }
       if (path === `/detail/create`){
@@ -125,7 +111,7 @@ export default {
           { todo: this.todo }
         ).then(() => {
           this.isUpdating = false;
-          this.$router.push(`/`);
+          this.$router.push(`/list`);
         })
       }
     }

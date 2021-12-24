@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-container>
     <v-overlay
       :absolute="isUpdating"
       :value="isUpdating"
@@ -15,14 +15,10 @@
     <v-card
       class="mx-auto"
       flat
-      tile
     >
       <v-toolbar
-        color="cyan"
-        dark
+        flat
       >
-        <v-toolbar-title>ToDo一覧</v-toolbar-title>
-
         <v-spacer></v-spacer>
 
         <v-btn
@@ -36,10 +32,14 @@
           作成
         </v-btn>
       </v-toolbar>
-      <v-list outlined>
-        <template>
-          <v-list-item v-for="todo in todos" :key="todo.title">
-            <template>
+      <v-divider></v-divider>
+      <v-list>
+        <div v-for="(todo,i) in todos" :key="`${i}-${todo.title}`">
+          <template>
+            <v-divider
+              v-show="i!==0"
+            ></v-divider>
+            <v-list-item>
               <v-list-item-content>
                 <v-list-item-title class="text-h5 mb-1">
                   {{ todo.title }}
@@ -67,14 +67,12 @@
                   <v-icon>mdi-delete</v-icon>削除
                 </v-btn>
               </v-list-item-action>
-            </template>
-          </v-list-item>
-
-        </template>
+            </v-list-item>
+          </template>
+        </div>
       </v-list>
     </v-card>
-    
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -100,7 +98,7 @@ export default {
         this.message = "削除しました";
         setInterval(() => {
           this.message = "";
-        }, 2000);
+        }, 1000);
       })
     }
   },

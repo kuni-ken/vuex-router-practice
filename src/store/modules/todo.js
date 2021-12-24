@@ -80,7 +80,6 @@ const todo = {
     }
   },
 
-
 }
 
-export default todo;
+export { todo };
