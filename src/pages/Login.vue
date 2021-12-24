@@ -4,6 +4,15 @@
       class="mx-auto ma-8 pa-8"
       width="400px"
     >
+      <v-row class="mt-2 mb-4">
+        <v-img
+          :src="require('../assets/logo.svg')"
+          contain
+          width="48"
+          height="48"
+        />
+      </v-row>
+
       <v-form
         ref="form"
         v-model="valid"
@@ -57,14 +66,21 @@
 </template>
 
 <script>
+import { actionTypes, modules } from '../store/const';
+
 export default {
   methods:{
-    login(){
+    async login(){
       this.isUpdating = true;
       const isValid = this.$refs.form.validate();
       if (isValid){
-        // 
-        
+        await this.$store.dispatch(
+          modules.AUTH + "/" + actionTypes.AUTH_LOGIN, {
+            userId: this.userId,
+            password: this.password
+          }
+        )
+        this.$router.push('/list')
       }
       this.isUpdating = false;
     }

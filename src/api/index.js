@@ -7,7 +7,7 @@ function get(url, params){
       }catch(e){
         reject(e);
       }
-    }, 2000);
+    }, 1000);
   });
 }
 
@@ -20,7 +20,7 @@ function post(url, params){
       }catch(e){
         reject(e);
       }
-    }, 2000);
+    }, 1000);
   });
 }
 

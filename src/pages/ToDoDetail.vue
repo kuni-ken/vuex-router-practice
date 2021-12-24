@@ -4,11 +4,8 @@
       flat
     >
       <v-toolbar
-        color="cyan"
-        dark
+        flat
       >
-        <v-toolbar-title>ToDo</v-toolbar-title>
-
         <v-spacer></v-spacer>
 
         <v-btn
@@ -55,19 +52,6 @@
       </v-card-text>
       <v-card-actions>
         <v-row justify="center">
-          <v-btn
-            class="ma-2"
-            outlined
-            color="primary"
-            to="/list"
-            min-width="88px"
-            :disabled="isUpdating"
-          >
-            <v-icon >
-              mdi-close
-            </v-icon>
-            戻る
-          </v-btn>
           <v-btn
             class="ma-2"
             color="primary"

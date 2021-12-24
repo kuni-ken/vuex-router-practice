@@ -17,11 +17,8 @@
       flat
     >
       <v-toolbar
-        color="cyan"
-        dark
+        flat
       >
-        <v-toolbar-title>ToDo一覧</v-toolbar-title>
-
         <v-spacer></v-spacer>
 
         <v-btn
@@ -35,6 +32,7 @@
           作成
         </v-btn>
       </v-toolbar>
+      <v-divider></v-divider>
       <v-list>
         <div v-for="(todo,i) in todos" :key="`${i}-${todo.title}`">
           <template>
@@ -100,7 +98,7 @@ export default {
         this.message = "削除しました";
         setInterval(() => {
           this.message = "";
-        }, 2000);
+        }, 1000);
       })
     }
   },
