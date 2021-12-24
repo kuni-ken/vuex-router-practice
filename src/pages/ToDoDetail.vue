@@ -1,5 +1,7 @@
 <template>
-  <v-card>
+  <v-card
+    flat
+  >
     <v-toolbar
       color="cyan"
       dark
@@ -51,23 +53,33 @@
       <small>*：入力必須</small>
     </v-card-text>
     <v-card-actions>
-      <v-spacer></v-spacer>
-      <v-btn
-        color="blue darken-1"
-        text
-        to="/"
-        :disabled="isUpdating"
-      >
-        Close
-      </v-btn>
-      <v-btn
-        color="blue darken-1"
-        text
-        @click="fix"
-        :loading="isUpdating"
-      >
-        Save
-      </v-btn>
+      <v-row justify="center">
+        <v-btn
+          class="ma-2"
+          outlined
+          color="primary"
+          to="/"
+          min-width="88px"
+          :disabled="isUpdating"
+        >
+          <v-icon >
+            mdi-close
+          </v-icon>
+          戻る
+        </v-btn>
+        <v-btn
+          class="ma-2"
+          color="primary"
+          @click="fix"
+          min-width="88px"
+          :loading="isUpdating"
+        >
+          <v-icon >
+            mdi-arrow-up-thin-circle-outline
+          </v-icon>
+          更新
+        </v-btn>
+      </v-row>
     </v-card-actions>
   </v-card>
 </template>

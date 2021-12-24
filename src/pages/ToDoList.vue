@@ -14,6 +14,7 @@
     </v-alert>
     <v-card
       class="mx-auto"
+      flat
       tile
     >
       <v-toolbar
@@ -25,14 +26,14 @@
         <v-spacer></v-spacer>
 
         <v-btn
-          fab
           dark
-          color="indigo"
+          color="primary"
           @click="onNewDialog"
         >
           <v-icon dark>
             mdi-plus
           </v-icon>
+          作成
         </v-btn>
       </v-toolbar>
       <v-list outlined>
@@ -49,20 +50,21 @@
               </v-list-item-content>
               <v-list-item-action>
                 <v-btn
-                  outlined
-                  rounded
-                  text
+                  color="primary"
+                  class="ma-1"
+                  min-width="138px"
                   @click="onShowDialog(todo.id)"
                 >
-                  <v-icon>mdi-pencil-outline</v-icon>確認・変更
+                  <v-icon>mdi-pencil</v-icon>確認・変更
                 </v-btn>
                 <v-btn
                   outlined
-                  rounded
+                  class="ma-1"
+                  min-width="138px"
                   text
                   @click="removeItem(todo.id)"
                 >
-                  <v-icon>mdi-pencil-outline</v-icon>削除
+                  <v-icon>mdi-delete</v-icon>削除
                 </v-btn>
               </v-list-item-action>
             </template>

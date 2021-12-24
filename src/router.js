@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import ToDoList from './components/ToDoList'
-import ToDoDetail from './components/ToDoDetail'
+import ToDoList from './pages/ToDoList'
+import ToDoDetail from './pages/ToDoDetail'
 
 const routes = [
   { path: '/', component: ToDoList },
