@@ -11,6 +11,7 @@
       <v-btn
         outlined
         to="/"
+        :disabled="isUpdating"
       >
         <v-icon >
           mdi-close
@@ -55,6 +56,7 @@
         color="blue darken-1"
         text
         to="/"
+        :disabled="isUpdating"
       >
         Close
       </v-btn>
@@ -62,6 +64,7 @@
         color="blue darken-1"
         text
         @click="fix"
+        :loading="isUpdating"
       >
         Save
       </v-btn>
@@ -73,6 +76,12 @@
 import { actionTypes, modules } from '../store/const';
 
 export default {
+  data(){
+    return {
+      isUpdating: false
+    }
+  },
+
   computed: {
     todo(){
       const path = this.$route.path;
@@ -86,6 +95,7 @@ export default {
 
   methods:{
     fix(){
+      this.isUpdating = true;
       const path = this.$route.path;
       const id = this.$route.params.id;
       if (path === `/detail/${id}`){
@@ -93,6 +103,7 @@ export default {
           modules.TODO + "/" + actionTypes.TODO_UPDATE,
           { todo: this.todo }
         ).then(() => {
+          this.isUpdating = false;
           this.$router.push(`/`);
         })
       }
@@ -101,6 +112,7 @@ export default {
           modules.TODO + "/" + actionTypes.TODO_CREATE,
           { todo: this.todo }
         ).then(() => {
+          this.isUpdating = false;
           this.$router.push(`/`);
         })
       }

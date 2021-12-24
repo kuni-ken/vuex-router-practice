@@ -1,5 +1,14 @@
 <template>
   <div>
+    <v-overlay
+      :absolute="isUpdating"
+      :value="isUpdating"
+    >
+      <v-progress-circular
+        indeterminate
+        color="primary"
+      ></v-progress-circular>
+    </v-overlay>
     <v-alert v-if="message" type="success">
       {{ message }}
     </v-alert>
@@ -83,7 +92,9 @@ export default {
       this.$router.push(`/detail/create`);
     },
     removeItem(id){
+      this.isUpdating = true;
       this.$store.dispatch(modules.TODO + "/" + actionTypes.TODO_DELETE, { id }).then(() => {
+        this.isUpdating = false;
         this.message = "削除しました";
         setInterval(() => {
           this.message = "";
@@ -99,7 +110,8 @@ export default {
 
   data(){
     return {
-      message: ""
+      message: "",
+      isUpdating: false,
     }
   }
 }
